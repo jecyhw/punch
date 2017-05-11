@@ -219,8 +219,6 @@ public class PunchTask {
     }
 
     public void sendEmail(String email, String body) {
-        JavaMailSenderImpl mailSender = (JavaMailSenderImpl) javaMailSender;
-        logger.info("username:{}", mailSender.getUsername());
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(email);
         message.setTo(email);
