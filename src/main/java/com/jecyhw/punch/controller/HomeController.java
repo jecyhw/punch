@@ -94,6 +94,12 @@ public class HomeController {
         return Response.success(true);
     }
 
+    @RequestMapping(value = "import", method = RequestMethod.GET)
+    public Response<?> importWorkday(@RequestParam Boolean onWork) {
+        punchTask.importWorkDay(null);
+        return Response.success(true);
+    }
+
     @RequestMapping(value = "health/check", method = RequestMethod.GET)
     public Response<?> health() {
         return Response.success(true);
