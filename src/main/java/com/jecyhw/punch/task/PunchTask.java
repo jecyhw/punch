@@ -192,6 +192,7 @@ public class PunchTask {
                             checkResponse = punchService.check(form);
                         } catch (Exception e) {
                             e.printStackTrace();
+                            logger.info(e.getMessage());
                             errorMsg = e.getMessage();
                         }
                     } while (retryCount-- > 0 && (checkResponse == null || !checkResponse.getSuccess()));//失败最多重试五次
