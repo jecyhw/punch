@@ -144,17 +144,20 @@ public class PunchTask {
                     return;
                 }
             }
+            logger.info("find user");
             List<User> users = userRepository.findByAutoWork(true);
             long curTimeStamp = System.currentTimeMillis() / 1000; //s
 
             List<String> list = new ArrayList<>(users.size());
 
+            logger.info("random time");
             for (User user : users) {
                 user.setSendTimeStamp(curTimeStamp + (long)(Math.random() * time ));
                 user.setOnWork(onWork);
                 list.add(user.getEmail() + "(" + DateFormatUtils.format(new Date(user.getSendTimeStamp() * 1000), "HH:mm:ss") + ")");
             }
 
+            logger.info("sort by time");
             users.sort(new UserComparator());
 
             logger.info("send mail");
