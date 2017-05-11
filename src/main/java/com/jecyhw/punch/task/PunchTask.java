@@ -14,6 +14,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -218,6 +219,8 @@ public class PunchTask {
     }
 
     public void sendEmail(String email, String body) {
+        JavaMailSenderImpl mailSender = (JavaMailSenderImpl) javaMailSender;
+        logger.info("username:{}", mailSender.getUsername());
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(email);
         message.setTo(email);
