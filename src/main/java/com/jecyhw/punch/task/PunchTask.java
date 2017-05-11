@@ -157,12 +157,11 @@ public class PunchTask {
 
             users.sort(new UserComparator());
 
+            logger.info("send mail");
             sendEmail("1147352923@qq.com", "自动打卡正在运行: " + String.join(",", list) + "打卡状态:" + onWork);
-
             for (int i = 0; i < users.size();) {
-
-
                 try {
+                    logger.info("try");
                     Thread.sleep(5000 + (int)(Math.random() * 5));//等待5到10秒
                 } catch (InterruptedException e) {
                     e.printStackTrace();
