@@ -75,7 +75,7 @@ public class PunchTask {
 
     }
 
-    @Scheduled(fixedRate = 1000 * 60)
+//    @Scheduled(fixedRate = 1000 * 60)
     public void guard() {
         logger.info("guard: {}", punchService.healthCheck());
     }
