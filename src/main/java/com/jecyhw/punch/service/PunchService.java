@@ -2,10 +2,8 @@ package com.jecyhw.punch.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jecyhw.punch.controller.HomeController;
 import com.jecyhw.punch.domain.*;
 import com.jecyhw.punch.repository.UserRepository;
-import com.jecyhw.punch.response.Response;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -129,6 +127,14 @@ public class PunchService {
     }
 
     public String healthCheck() {
-        return restTemplate.getForObject("https://punch-cnic.herokuapp.com/health/check", String.class);
+        ResponseEntity<String> responseEntity = restTemplate.getForEntity("https://punch-cnic.herokuapp.com/health/check", String.class);
+        try {
+            if (responseEntity.getStatusCode().equals(HttpStatus.OK)) {
+                return responseEntity.getBody();
+            }
+        } catch (Exception e) {
+
+        }
+        return restTemplate.getForObject("https://punch-cnic-1.herokuapp.com/health/check", String.class);
     }
 }
