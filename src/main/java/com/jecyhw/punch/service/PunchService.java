@@ -127,8 +127,8 @@ public class PunchService {
     }
 
     public String healthCheck() {
-        ResponseEntity<String> responseEntity = restTemplate.getForEntity("https://punch-cnic.herokuapp.com/health/check", String.class);
         try {
+            ResponseEntity<String> responseEntity = restTemplate.getForEntity("https://punch-cnic.herokuapp.com/health/check", String.class);
             if (responseEntity.getStatusCode().equals(HttpStatus.OK)) {
                 return responseEntity.getBody();
             }
