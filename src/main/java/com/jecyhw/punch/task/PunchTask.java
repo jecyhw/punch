@@ -55,29 +55,29 @@ public class PunchTask {
         }
     }
 
-    @Scheduled(cron = "0 15 7 * * ?")
-    public void onWork() {
-        WorkDay workDay = workDayRepository.findOne(Integer.valueOf(dateFormat.format(new Date())));
-        if (workDay != null) {
-            new Thread(new AutoWork(true, 3600L)).start();
-        }
-        logger.info("onWork");
-    }
-
-    @Scheduled(cron = "0 0 18 * * ?")
-    public void offWork() {
-        WorkDay workDay = workDayRepository.findOne(Integer.valueOf(dateFormat.format(new Date())));
-        if (workDay != null) {
-            new Thread(new AutoWork(false, 3600L)).start();
-        }
-        logger.info("offWork");
-
-    }
-
-    @Scheduled(fixedRate = 1000 * 60)
-    public void guard() {
-        logger.info("guard: {}", punchService.healthCheck());
-    }
+//    @Scheduled(cron = "0 15 7 * * ?")
+//    public void onWork() {
+//        WorkDay workDay = workDayRepository.findOne(Integer.valueOf(dateFormat.format(new Date())));
+//        if (workDay != null) {
+//            new Thread(new AutoWork(true, 3600L)).start();
+//        }
+//        logger.info("onWork");
+//    }
+//
+//    @Scheduled(cron = "0 0 18 * * ?")
+//    public void offWork() {
+//        WorkDay workDay = workDayRepository.findOne(Integer.valueOf(dateFormat.format(new Date())));
+//        if (workDay != null) {
+//            new Thread(new AutoWork(false, 3600L)).start();
+//        }
+//        logger.info("offWork");
+//
+//    }
+//
+//    @Scheduled(fixedRate = 1000 * 60)
+//    public void guard() {
+//        logger.info("guard: {}", punchService.healthCheck());
+//    }
 
     public void importWorkDay(ContextRefreshedEvent event) {
         logger.info("importWorkDay");
