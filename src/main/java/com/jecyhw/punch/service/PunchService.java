@@ -99,7 +99,7 @@ public class PunchService {
             URI uri = response.getHeaders().getLocation();
             response = restTemplate.getForEntity(uri, String.class);
             UserToken userToken = objectMapper.readValue(response.getBody(), UserToken.class);
-            logger.info(userToken.getUname());
+            logger.info(form.getUserName() + " " + userToken.getUname());
             return userToken;
         } catch (Exception e) {
             Document document = Jsoup.parse(response.getBody());
