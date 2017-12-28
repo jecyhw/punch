@@ -99,7 +99,9 @@ public class PunchTask {
     public void syncWorkDay() {
         RestTemplate restTemplate = new RestTemplate();
         Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, 5);
         Calendar end = Calendar.getInstance();
+        end.add(Calendar.DATE, 5);
         end.set(end.get(Calendar.YEAR) + 1, 0, 1);
         Map<String, String> params = new HashMap<>();
         List<String> workDays = new ArrayList<>();
