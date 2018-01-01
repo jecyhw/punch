@@ -2,7 +2,7 @@ package com.jecyhw.punch.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jecyhw.punch.ServerProperties;
+import com.jecyhw.punch.PunchServerProperties;
 import com.jecyhw.punch.domain.*;
 import com.jecyhw.punch.repository.UserRepository;
 import org.jsoup.Jsoup;
@@ -37,7 +37,7 @@ public class PunchService {
     private final ObjectMapper objectMapper;
 
     @Autowired
-    private ServerProperties serverProperties;
+    private PunchServerProperties serverProperties;
 
     static private final Logger logger = LoggerFactory.getLogger(PunchService.class);
 
