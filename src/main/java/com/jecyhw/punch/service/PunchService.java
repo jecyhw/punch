@@ -2,6 +2,7 @@ package com.jecyhw.punch.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jecyhw.punch.ServerProperties;
 import com.jecyhw.punch.domain.*;
 import com.jecyhw.punch.repository.UserRepository;
 import org.jsoup.Jsoup;
@@ -34,6 +35,9 @@ public class PunchService {
     private UserRepository userRepository;
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
+
+    @Autowired
+    private ServerProperties serverProperties;
 
     static private final Logger logger = LoggerFactory.getLogger(PunchService.class);
 
@@ -127,14 +131,15 @@ public class PunchService {
     }
 
     public String healthCheck() {
-        try {
-            ResponseEntity<String> responseEntity = restTemplate.getForEntity("https://punch-cnic.herokuapp.com/health/check", String.class);
-            if (responseEntity.getStatusCode().equals(HttpStatus.OK)) {
-                return responseEntity.getBody();
-            }
-        } catch (Exception e) {
 
-        }
-        return restTemplate.getForObject("https://punch-cnic-1.herokuapp.com/health/check", String.class);
+//        try {
+//            ResponseEntity<String> responseEntity = restTemplate.getForEntity("https://jec-punch-1.herokuapp.com/health/check", String.class);
+//            if (responseEntity.getStatusCode().equals(HttpStatus.OK)) {
+//                return responseEntity.getBody();
+//            }
+//        } catch (Exception e) {
+//
+//        }
+        return restTemplate.getForObject(serverProperties.getHost() + "/health/check", String.class);
     }
 }
