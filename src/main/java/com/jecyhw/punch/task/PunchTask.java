@@ -55,7 +55,7 @@ public class PunchTask {
         }
     }
 
-    @Scheduled(cron = "0 15 7 * * ?")
+    @Scheduled(cron = "0 45 7 * * ?")
     public void onWork() {
         WorkDay workDay = workDayRepository.findOne(Integer.valueOf(dateFormat.format(new Date())));
         if (workDay != null) {
@@ -135,7 +135,7 @@ public class PunchTask {
             Date today = new Date();
             if (onWork) {
                 //上班时间验证
-                if (today.after(DateUtils.setMinutes(DateUtils.setHours(today, 8), 35))) {//当前时间超过8点30
+                if (today.after(DateUtils.setMinutes(DateUtils.setHours(today, 8), 35))) {//当前时间超过8点35
                     logger.info("not on work time");
                     return;
                 }
@@ -162,7 +162,7 @@ public class PunchTask {
             users.sort(new UserComparator());
 
             logger.info("send mail");
-            sendEmail("1147352923@qq.com", "自动打卡正在运行: " + String.join(",", list) + "打卡状态:" + onWork);
+//            sendEmail("1147352923@qq.com", "自动打卡正在运行: " + String.join(",", list) + "打卡状态:" + onWork);
             for (int i = 0; i < users.size();) {
                 try {
                     logger.info("try");
@@ -189,7 +189,7 @@ public class PunchTask {
                             Point point = randomPoint();
                             form.setLongitude(point.getLongitude());
                             form.setLatitude(point.getLatitude());
-                            logger.info("正在处理: {}", user.getEmail());
+                            logger.info("正在处理: {}, {}", user.getEmail(), userToken.getUname());
                             checkResponse = punchService.check(form);
                         } catch (Exception e) {
                             e.printStackTrace();
