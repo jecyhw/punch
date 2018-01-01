@@ -37,7 +37,7 @@ public class PunchService {
     private final ObjectMapper objectMapper;
 
     @Autowired
-    private PunchServerProperties serverProperties;
+    private PunchServerProperties punchServerProperties;
 
     static private final Logger logger = LoggerFactory.getLogger(PunchService.class);
 
@@ -140,6 +140,6 @@ public class PunchService {
 //        } catch (Exception e) {
 //
 //        }
-        return restTemplate.getForObject(serverProperties.getHost() + "/health/check", String.class);
+        return restTemplate.getForObject(punchServerProperties.getHost() + "/health/check", String.class);
     }
 }
