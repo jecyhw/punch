@@ -59,7 +59,7 @@ public class PunchTask {
     public void onWork() {
         WorkDay workDay = workDayRepository.findOne(Integer.valueOf(dateFormat.format(new Date())));
         if (workDay != null) {
-            new Thread(new AutoWork(true, 3600L)).start();
+            new Thread(new AutoWork(true, 1800L)).start();
         }
         logger.info("onWork");
     }
